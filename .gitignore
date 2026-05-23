@@ -1,0 +1,12 @@
+# API cache
+data/
+
+# Old Next.js build artifacts
+tmp/
+
+# Generated build output (CI generates and deploys this)
+dist/
+
+# Python
+__pycache__/
+*.pyc
