@@ -19,7 +19,12 @@ jobs:
         run: pip install requests
       - name: Build static site
         run: python imas_schedule.py
+      - name: Create Cloudflare Pages project (if not exists)
+        run: |
+          npx wrangler pages project create imas-schedule --production-branch=main || true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       - name: Deploy to Cloudflare Pages
-        run: npx wrangler pages deploy dist/ --project-name=imas-schedule
+        run: npx wrangler pages deploy dist/ --project-name=imas-schedule --commit-dirty=true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
