@@ -20,7 +20,6 @@ jobs:
       - name: Build static site
         run: python imas_schedule.py
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: pages deploy dist/ --project-name=imas-schedule
+        run: npx wrangler pages deploy dist/ --project-name=imas-schedule
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
