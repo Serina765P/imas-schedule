@@ -19,6 +19,8 @@ jobs:
         run: pip install requests
       - name: Build static site
         run: python imas_schedule.py
+      - name: Write CNAME for custom domain
+        run: echo 'schedule.serinap.top' > dist/CNAME
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
